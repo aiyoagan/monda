@@ -1,0 +1,27 @@
+{
+    "name": "mondamq/mondamq",
+    "description": "Monda Group Message Queue",
+    "type": "library",
+    "require": {
+        "php": ">=7.0",
+        "php-amqplib/php-amqplib": ">=2.8"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "JamesWong",
+            "email": "295247535@qq.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "MondaMQ\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MondaMQ\\Tests\\": "tests/"
+        }
+    }
+}
