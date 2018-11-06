@@ -52,7 +52,7 @@ class MondaMQCommand {
     public $autoDelete = false;
 
     /**
-     * 镜像
+     * 镜像【暂未实现】
      * 镜像队列，打开后消息会在节点之间复制，有master和slave的概念
      * @var bool
      */
@@ -146,7 +146,7 @@ class MondaMQCommand {
      * @throws \Exception
      * @author wong
      */
-    public function reset($exchangeName,$queueName,$routeKey) {
+    public function reset($exchangeName, $queueName, $routeKey) {
         $this->exchangeName = $exchangeName;
         $this->queueName = $queueName;
         $this->routeKey = $routeKey;
@@ -164,14 +164,12 @@ class MondaMQCommand {
         }
         //连接channel
         $this->_channel = $this->_conn->channel();
-        //创建交换机
-        $this->_channel->exchange_declare($this->exchangeName, $this->type, $this->passive, $this->durable, $this->autoDelete);
-
         //创建队列
         $this->_channel->queue_declare($this->queueName, $this->passive, $this->durable, $this->exclusive, $this->autoDelete);
-
+        //创建交换机
+        $this->_channel->exchange_declare($this->exchangeName, $this->type, $this->passive, $this->durable, $this->autoDelete);
         //将队列通过制定路由绑定到指定交换机上
-        $this->_channel->queue_bind($this->queueName, $this->exchangeName);
+        $this->_channel->queue_bind($this->queueName, $this->exchangeName, $this->routeKey);
     }
 
     public function close() {
@@ -224,7 +222,7 @@ class MondaMQCommand {
             return false;
         }
         $this->_channel->basic_consume($this->queueName, '', false, $noAck, $this->exclusive, false, $callback);
-        while(count($this->_channel->callbacks)){
+        while (count($this->_channel->callbacks)) {
             $this->_channel->wait();
         }
     }
