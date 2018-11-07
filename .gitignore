@@ -2,4 +2,5 @@
 .idea/
 vendor/
 tests/logs/
+tests/config.php
 composer.lock

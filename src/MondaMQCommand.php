@@ -62,6 +62,8 @@ class MondaMQCommand {
 
     private $_channel = null;
 
+    private $from = null;
+
     public function __construct($configs = [], $exchangeName = '', $queueName = '', $routeKey = '') {
         $this->setConfig($configs);
         $this->exchangeName = $exchangeName;
@@ -168,8 +170,11 @@ class MondaMQCommand {
         $this->_channel->queue_declare($this->queueName, $this->passive, $this->durable, $this->exclusive, $this->autoDelete);
         //创建交换机
         $this->_channel->exchange_declare($this->exchangeName, $this->type, $this->passive, $this->durable, $this->autoDelete);
-        //将队列通过制定路由绑定到指定交换机上
-        $this->_channel->queue_bind($this->queueName, $this->exchangeName, $this->routeKey);
+        //消费者才需要绑定。
+        if ($this->from == 'consumer') {
+            //将队列通过制定路由绑定到指定交换机上
+            $this->_channel->queue_bind($this->queueName, $this->exchangeName, $this->routeKey);
+        }
     }
 
     public function close() {
@@ -198,6 +203,7 @@ class MondaMQCommand {
      * @author wong
      */
     public function send($msg) {
+        $this->from = 'product';
         $this->open();
         if (is_array($msg)) {
             $msg = json_encode($msg);
@@ -217,6 +223,7 @@ class MondaMQCommand {
      * @author wong
      */
     public function run($callback, $noAck = true) {
+        $this->from = 'consumer';
         $this->open();
         if (!$callback) {
             return false;
