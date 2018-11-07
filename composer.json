@@ -2,6 +2,7 @@
     "name": "mondamq/mondamq",
     "description": "Monda Group Message Queue",
     "type": "library",
+    "version":"1.0",
     "require": {
         "php": ">=7.0",
         "php-amqplib/php-amqplib": ">=2.8"
