@@ -14,7 +14,7 @@ require_once "config.php";
 $exchangeName = 'md-e-fanout-1';
 $queueName = 'md-q-fanout-quote-q-1';
 $routeKey = 'md-r-fanout-quote-1';
-$ra = new \MondaMQ\MondaMQCommand($configs, $exchangeName, $queueName, $routeKey);
+$ra = new \monda\mq\MondaMQCommand($configs, $exchangeName, $queueName, $routeKey);
 //$ra -> setDurable(false);//设置是否持久化
 
 //业务处理

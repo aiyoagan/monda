@@ -17,7 +17,7 @@ $routeKey = 'md-r-direct-1';
 $type = 'direct';
 //echo $exchangeName . "\r\n" . $queueName . "\r\n" . $routeKey . "\r\n" . $type;
 
-$ra = new \MondaMQ\MondaMQCommand($configs, $exchangeName, $queueName, $routeKey);
+$ra = new \monda\mq\MondaMQCommand($configs, $exchangeName, $queueName, $routeKey);
 $ra->setType($type);
 //$ra -> setDurable(false);//设置是否持久化
 

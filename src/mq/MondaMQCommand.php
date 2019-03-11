@@ -6,7 +6,7 @@
  * Time: 下午2:41
  */
 
-namespace MondaMQ;
+namespace monda\mq;
 
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Exception\AMQPConnectionClosedException;

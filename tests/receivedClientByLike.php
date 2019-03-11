@@ -14,7 +14,7 @@ require_once "config.php";
 $exchangeName = 'md-e-topic-1';
 $queueName = 'md-q-topic-1';
 $routeKey = 'saas.logs';
-$ra = new \MondaMQ\MondaMQCommand($configs, $exchangeName, $queueName, $routeKey);
+$ra = new \monda\mq\MondaMQCommand($configs, $exchangeName, $queueName, $routeKey);
 $ra->setType('topic');
 //$ra -> setDurable(false);//设置是否持久化
 
