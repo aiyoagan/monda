@@ -1,5 +1,5 @@
 {
-    "name": "mondamq/mondamq",
+    "name": "monda/monda-utils",
     "description": "Monda Group Message Queue",
     "type": "library",
     "version":"1.0",
