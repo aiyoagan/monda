@@ -46,6 +46,11 @@ class RpcClient {
         fwrite($fp, $data);
         $result = fread($fp, 1024);
         fclose($fp);
-        return $result;
+         $result = json_decode($result,1);
+        if(isset($result['status']) && isset($result['data']) && $result['status'] == 200){
+            return $result['data'];
+        }
+        //记录日志
+        return false;
     }
 }
