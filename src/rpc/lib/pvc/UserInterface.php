@@ -3,6 +3,11 @@
 namespace monda\rpc\lib\pvc;
 
 
+/**
+ * Interface UserInterface
+ * @package monda\rpc\lib\pvc
+ * @version(1.0.0)
+ */
 interface UserInterface {
     /**
      * @param string $account

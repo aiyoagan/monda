@@ -2,7 +2,11 @@
 
 namespace monda\rpc\lib\card;
 
-
+/**
+ * Interface UserInterface
+ * @package monda\rpc\lib\card
+ * @version(1.0.0)
+ */
 interface UserInterface {
     /**
      * @param string $unionid
