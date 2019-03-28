@@ -1,28 +1,29 @@
 {
-    "name": "monda/monda-utils",
-    "description": "Monda Group Message Queue",
-    "type": "library",
-    "version":"1.0",
-    "require": {
-        "php": ">=7.0",
-        "php-amqplib/php-amqplib": ">=2.8"
-    },
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "JamesWong",
-            "email": "295247535@qq.com"
-        }
-    ],
-    "minimum-stability": "dev",
-    "autoload": {
-        "psr-4": {
-            "MondaMQ\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "MondaMQ\\Tests\\": "tests/"
-        }
+  "name": "monda/monda-utils",
+  "description": "Monda Group Message Queue",
+  "type": "library",
+  "version": "1.0",
+  "require": {
+    "php": ">=7.0",
+    "php-amqplib/php-amqplib": ">=2.8",
+    "swoft/framework": "^1.0"
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "JamesWong",
+      "email": "295247535@qq.com"
     }
+  ],
+  "minimum-stability": "dev",
+  "autoload": {
+    "psr-4": {
+      "MondaMQ\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "MondaMQ\\Tests\\": "tests/"
+    }
+  }
 }

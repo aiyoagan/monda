@@ -7,8 +7,7 @@
  * Time: 上午10:05
  */
 
-namespace MondaMQ\rpc;
-
+namespace monda\rpc;
 
 class RpcClient {
 
@@ -110,7 +109,7 @@ class RpcClient {
      * 远程调用
      */
     public function call() {
-        if (!empty($this->interface) || empty($this->version) || empty($this->version) || empty($this->host) || empty($this->port)) {
+        if (empty($this->interface) || empty($this->version) || empty($this->host) || empty($this->port)) {
             throw new \Exception("rpc配置出错");
         }
         $fp = stream_socket_client("tcp://{$this->host}:{$this->port}", $errno, $errstr);
@@ -133,7 +132,7 @@ class RpcClient {
         if (isset($result['status']) && isset($result['data']) && $result['status'] == 200) {
             return $result['data'];
         }
-        //记录日志
+
         return false;
     }
 }
