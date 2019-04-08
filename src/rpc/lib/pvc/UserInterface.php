@@ -2,13 +2,8 @@
 
 namespace monda\rpc\lib\pvc;
 
-
-/**
- * Interface UserInterface
- * @package monda\rpc\lib\pvc
- * @version(1.0.0)
- */
-interface UserInterface {
+interface UserInterface
+{
     /**
      * @param string $account
      * @param string $password
@@ -17,14 +12,12 @@ interface UserInterface {
      */
     public function register(string $account, string $password, string $ip);
 
-
     /**
      * @param string $account
      * @return mixed
      * 检查手机是否注册过
      */
     public function checkAccountIsExist(string $account);
-
 
     /**
      * @param $account
@@ -35,7 +28,6 @@ interface UserInterface {
      */
     public function loginByAccount(string $account, string $password, string $ip);
 
-
     /**
      * @param string $name
      * @param string $password
@@ -45,16 +37,15 @@ interface UserInterface {
      */
     public function loginByName(string $name, string $password, string $ip);
 
-
     /**
      * @param string $unionId
+     * @param string $openId
      * @param string $nickname
      * @param string $ip
      * @return mixed
      * 微信登录
      */
-    public function loginByUnionId(string $unionId, string $nickname, string $ip);
-
+    public function loginByUnionId(string $unionId, string $openId, string $nickname, string $ip);
 
     /**
      * @param string $id
@@ -62,7 +53,6 @@ interface UserInterface {
      * 判断是否登录
      */
     public function isSetPassword(string $id);
-
 
     /**
      * @param string $id
@@ -81,7 +71,6 @@ interface UserInterface {
      */
     public function resetPassword(string $account, string $password, string $passwordConfirm);
 
-
     /**
      * @param string $id
      * @param string $password
@@ -92,7 +81,6 @@ interface UserInterface {
      */
     public function changePassword(string $id, string $oldPassword, string $password, string $passwordConfirm);
 
-
     /**
      * @param string $id
      * @param string $password
@@ -102,7 +90,6 @@ interface UserInterface {
      */
     public function setPassword(string $id, string $password, string $passwordConfirm);
 
-
     /**
      * @param string $id
      * @param string $password
@@ -110,4 +97,15 @@ interface UserInterface {
      * 检查密码
      */
     public function checkOldPassword(string $id, string $password);
+
+    /**
+     * @param string $account
+     * @param string $unionid
+     * @param string $nickname
+     * @param string $openid
+     * @param string $ip
+     * @return mixed
+     * 绑定账号
+     */
+    public function bindAccount(string $account, string $unionid, string $nickname, string $openid, string $ip);
 }
