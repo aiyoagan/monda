@@ -1,5 +1,5 @@
 <?php
-namespace monda\utils;
+namespace monda\sms;
 
 
 require('function.php');
