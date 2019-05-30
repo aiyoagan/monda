@@ -10,17 +10,17 @@ require('rsa/SignUtil.php');
 class SmsApiClient
 {
 
-    private static $platId;
+    private  $platId;
 
-    private static $token;
+    private  $token;
 
-    private static $url;
+    private  $url;
 
 
     public function __construct(int $platId, string $token, string $url) {
-        self::$platId = $platId;
-        self::$token = $token;
-        self::$url = $url;
+        $this->platId = $platId;
+        $this->token = $token;
+        $this->url = $url;
     }
 
     /**
@@ -29,10 +29,10 @@ class SmsApiClient
      * @param $params
      * @return string
      */
-    public static function send($uri, $params) {
-        $url = self::$url . $uri;
-        $params['platId'] = self::$platId;
-        $params['token'] = self::$token;
+    public  function send($uri, $params) {
+        $url = $this->url . $uri;
+        $params['platId'] = $this->platId;
+        $params['token'] = $this->token;
         $params['_timer'] = time();
         $sign = \SignUtil::sign($url, $params);
         $rsa = new \RSACrypt();
