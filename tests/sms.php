@@ -11,15 +11,14 @@ require('../src/sms/SmsApiClient.php');
 
 //對應的平臺名稱
 $platId = 1;
-$token = '4e487db0eda79aabd307b5c9da8afcb71e0df053';
+//从后台自动生成token
+$token = '';
 $url = 'http://utils.dasu123.my/';
-
 $sms = new \monda\utils\SmsApiClient($platId, $token, $url);
-//請求host
 $uri = 'api/sms/send';
 $prames = [
     'platId' => $platId,
-    'mobile' => '13790261461',
+    'mobile' => '',//手机号码
     'content' => '验证码{$code},用于测试,有效期为十分钟'
 ];
 $res = $sms->send($uri, $prames);
