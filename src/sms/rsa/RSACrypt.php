@@ -9,21 +9,12 @@
 
 class RSACrypt {
 	public $pubkey;
-	public $privkey;
 
-	function __construct() {
-		$this->pubkey  = file_get_contents(__DIR__.'/rsa_public_key.pem');
-		$this->privkey = file_get_contents(__DIR__.'/rsa_private_key.pem');
+	function __construct($pubkeyPath = null) {
+		$this->pubkey  = file_get_contents($pubkeyPath);
 	}
 
-	//私钥加密
-	public  function encryptByPrivateKey($data) {
-		$pi_key =  openssl_pkey_get_private($this->privkey);
-		$encrypted="";
-		openssl_private_encrypt($data,$encrypted,$pi_key,OPENSSL_PKCS1_PADDING);//私钥加密
-		$encrypted = self::urlsafe_b64encode($encrypted);//加密后的内容通常含有特殊字符，需要编码转换下，在网络间通过url传输时要注意base64编码是否是url安全的
-		return $encrypted;
-	}
+
 	//公钥解密
 	public  function decryptByPublicKey($data) {
 		$pu_key =  openssl_pkey_get_public($this->pubkey);
@@ -45,14 +36,6 @@ class RSACrypt {
 		return $encrypted;
 	}
 
-	//私钥解密
-	public  function decryptByPrivateKey($data) {
-		$pi_key =  openssl_pkey_get_private($this->privkey);
-		$decrypted = "";
-		$data = self::urlsafe_b64decode($data);
-		openssl_private_decrypt($data,$decrypted,$pi_key);//私钥解密
-		return $decrypted;
-	}
 
 	//安全的b64encode
 	public static  function urlsafe_b64encode($string) {

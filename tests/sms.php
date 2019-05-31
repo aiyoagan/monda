@@ -14,7 +14,7 @@ $platId = 1;
 //从后台自动生成token
 $token = '';
 $url = 'http://utils.dasu123.my/';
-$sms = new \monda\utils\SmsApiClient($platId, $token, $url);
+$sms = new \monda\sms\SmsApiClient($platId, $token, $url);
 $uri = 'api/sms/send';
 $prames = [
     'platId' => $platId,

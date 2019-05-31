@@ -35,7 +35,9 @@ class SmsApiClient
         $params['token'] = $this->token;
         $params['_timer'] = time();
         $sign = \SignUtil::sign($url, $params);
-        $rsa = new \RSACrypt();
+        //公钥路径
+        $pubkeyPath = dirname(dirname(__DIR__)).'/rsa_public_key.pem';
+        $rsa = new \RSACrypt($pubkeyPath);
         $params['__sign'] = $rsa->encryptByPublicKey($sign);
         try {
             $result = post($url, $params);
