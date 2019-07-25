@@ -155,9 +155,11 @@ class JsonRpcClient {
         $result = '';
         while (!feof($fp)) {
             $tmp = stream_socket_recvfrom($fp, 1024);
-            $result .= $tmp;
-            if (strpos($tmp, $this->rpcEol)) {
+            if ($pos = strpos($tmp, $this->rpcEol)) {
+                $result .= substr($tmp, 0, $pos);
                 break;
+            } else {
+                $result .= $tmp;
             }
         }
         fclose($fp);
